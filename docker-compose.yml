@@ -1,0 +1,41 @@
+version: "3.9"
+   
+services:
+    db:
+        image: postgres
+        volumes: 
+            - dev-db-data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+    api:
+        build: 
+            context: ./api
+        command: >
+            sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+        volumes:
+            - ./api:/app
+        ports:
+            - "8000:8000"
+        environment:
+            - POSTGRES_NAME=postgres
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        depends_on:
+            - db
+    interface:
+        build:
+            context: ./interface
+        command: >
+            sh -c "npm start"
+        volumes:
+            - ./interface:/app
+            - node-modules:/app/node_modules
+        ports:
+            - "3000:3000"
+        depends_on:
+            - api
+volumes:
+    dev-db-data:
+    node-modules:
