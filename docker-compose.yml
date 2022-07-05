@@ -13,7 +13,9 @@ services:
         build: 
             context: ./api
         command: >
-            sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+            sh -c "python manage.py migrate && 
+                python manage.py loaddata fixtures/*.json && 
+                python manage.py runserver 0.0.0.0:8000"
         volumes:
             - ./api:/app
         ports:
@@ -34,8 +36,6 @@ services:
             - node-modules:/app/node_modules
         ports:
             - "3000:3000"
-        depends_on:
-            - api
 volumes:
     dev-db-data:
     node-modules:
