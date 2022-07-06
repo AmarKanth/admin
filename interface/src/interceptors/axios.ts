@@ -9,7 +9,6 @@ axios.interceptors.response.use(res => res, async error => {
 		await axios.post("token/refresh/", {
 			"refresh": localStorage.getItem("refresh")
 		}).then(res => {
-			localStorage.setItem("access", res.data.access);
 			axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access}`;
 		});
 

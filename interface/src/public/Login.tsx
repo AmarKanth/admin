@@ -19,7 +19,6 @@ class Login extends Component {
 			password : this.password
 		}).then(res => {
 			localStorage.setItem('refresh', res.data.refresh);
-			localStorage.setItem('access', res.data.access);
 			axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access}`;
 		});
 
