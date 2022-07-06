@@ -13,7 +13,7 @@ class Header extends Component {
         
         await axios.get('logout/').then(res => {
             localStorage.removeItem('refresh');
-            axios.defaults.headers.common['Authorization'] = "";
+            localStorage.removeItem('access');
         });
 
         this.setState({

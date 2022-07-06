@@ -19,7 +19,7 @@ class Login extends Component {
 			password : this.password
 		}).then(res => {
 			localStorage.setItem('refresh', res.data.refresh);
-			axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access}`;
+			localStorage.setItem('access', res.data.access);
 		});
 
 		this.setState({
@@ -29,7 +29,7 @@ class Login extends Component {
 
 	render() {
 		if (this.state.redirect) {
-			return <Navigate to={"/"} />
+			return <Navigate to={"/users"} />
 		};
 
 		return (

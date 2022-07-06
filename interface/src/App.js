@@ -1,7 +1,7 @@
 import './App.css';
 
-import Dashboard from './secure/Dashboard.tsx';
-import Users from './secure/Users.tsx';
+import Dashboard from './secure/dashboard/Dashboard.tsx';
+import Users from './secure/users/Users.tsx';
 import Login from './public/Login.tsx';
 import Register from './public/Register.tsx';
 
