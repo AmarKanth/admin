@@ -1,11 +1,26 @@
 from rest_framework_simplejwt.token_blacklist.models import OutstandingToken, BlacklistedToken
 
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.response import Response
 from rest_framework import status, exceptions
 
-from users.serializers import UserSerializer
-from users.models import User
+from users.serializers import UserSerializer, PermissionSerializer, RoleSerializer
+from users.models import Role, Permission, User
+
+
+class Register(APIView):
+
+	def post(self, request):
+		data = request.data
+
+		if data['password'] != data['password_confirm']:
+			raise exceptions.APIException('Passwords do not match!')
+
+		serializer = UserSerializer(data=data)
+		serializer.is_valid(raise_exception=True)
+		serializer.save()
+		return Response(serializer.data)
 
 
 class Logout(APIView):
@@ -27,15 +42,16 @@ class AuthenticatedUserDetails(APIView):
 		return Response(serializer.data, status=status.HTTP_200_OK)
 
 
-class Users(APIView):
+class PermissionAPIViewset(ModelViewSet):
+	queryset = Permission.objects.all()
+	serializer_class = PermissionSerializer
 
-	def get(self, request):
-		users = User.objects.all()
-		serializer = UserSerializer(users, many=True)
-		return Response(serializer.data, status=status.HTTP_200_OK)
 
-	def post(self, request):
-		serializer = UserSerializer(data=request.data)
-		serializer.is_valid(raise_exception=True)
-		serializer.save()
-		return Response(serializer.data, status=status.HTTP_201_CREATED)
+class RoleAPIViewset(ModelViewSet):
+	queryset = Role.objects.all()
+	serializer_class = RoleSerializer
+
+
+class UsersAPIViewset(ModelViewSet):
+	queryset = User.objects.all()
+	serializer_class = UserSerializer
