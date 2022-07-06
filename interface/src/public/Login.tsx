@@ -14,10 +14,14 @@ class Login extends Component {
 	submit = async (e: SyntheticEvent) => {
 		e.preventDefault();
 
-		await axios.post('http://localhost:8000/api/token/create/', {
+		await axios.post('token/create/', {
 			email : this.email,
 			password : this.password
-		})
+		}).then(res => {
+			localStorage.setItem('refresh', res.data.refresh);
+			localStorage.setItem('access', res.data.access);
+			axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access}`;
+		});
 
 		this.setState({
             redirect: true
