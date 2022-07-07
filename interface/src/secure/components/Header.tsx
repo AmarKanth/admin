@@ -27,12 +27,13 @@ class Header extends Component {
         }
 
         return (
-            <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-                <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="!#">Company name</a>
+            <header className="navbar navbar-dark bg-dark shadow">
+                <a className="navbar-brand col-md-3 px-3" href="!#">Admin App</a>
 
-                <div className="navbar-nav">
-                    <div className="nav-item text-nowrap">
-                        <a className="nav-link px-3" href="!#" onClick={this.handleClick}>Sign out</a>
+                <div className="navbar-nav col-md-2">
+                    <div className="nav-item">
+                        <button type="button" className="btn btn-outline-light me-2">Login</button>
+                        <button type="button" className="btn btn-outline-light me-2" onClick={this.handleClick}>Logout</button>
                     </div>
                 </div>
             </header>

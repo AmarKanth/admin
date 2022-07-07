@@ -1,5 +1,6 @@
 import './App.css';
 
+import RedirectToDashboard from "./secure/RedirectToDashboard.tsx";
 import Dashboard from './secure/dashboard/Dashboard.tsx';
 import Users from './secure/users/Users.tsx';
 import Login from './public/Login.tsx';
@@ -13,7 +14,8 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <Routes>
-                    <Route path={'/'} element={<Dashboard/>} />
+                    <Route path={'/'} element={<RedirectToDashboard/>} />
+                    <Route path={'/dashboard'} element={<Dashboard/>} />
                     <Route path={'/users'} element={<Users/>} />
                     <Route path={'/login'} element={<Login/>} />
                     <Route path={'/register'} element={<Register/>} />

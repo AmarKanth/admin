@@ -1,21 +1,22 @@
 import React, {Component} from 'react';
+import {NavLink} from 'react-router-dom';
 
 
 class Nav extends Component {
     render() {
         return (
-            <nav id="sidebarMenu" className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-                <div className="position-sticky pt-3">
-                    <ul className="nav flex-column">
+            <>
+                <div className="sidebar">
+                    <ul className="nav nav-pills">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="!#">
-                                <span data-feather="home" className="align-text-bottom"></span>
-                                Dashboard
-                            </a>
+                            <NavLink to={"/dashboard"} className={({isActive}) => (isActive ? "nav-link active" : 'nav-link')} aria-current="page">Dashboard</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to={"/users"} className={({isActive}) => (isActive ? "nav-link active" : 'nav-link')} aria-current="page">Users</NavLink>
                         </li>
                     </ul>
                 </div>
-            </nav>
+            </>
         )
     }
 }

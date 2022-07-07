@@ -147,7 +147,7 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': False,
     'UPDATE_LAST_LOGIN': True,
-    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(seconds=30),
+    'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=10),
 }
 
 AUTH_USER_MODEL = 'users.User'

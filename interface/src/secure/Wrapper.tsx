@@ -13,9 +13,9 @@ class Wrapper extends Component {
 	                <div className="row">
 	                    <Nav />
 
-	                    <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+	                    <div className="main-content">
 	                        {this.props.children}
-	                    </main>
+	                    </div>
 	                </div>
 	            </div>	
 			</>
