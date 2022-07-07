@@ -25,12 +25,13 @@ class Users extends Component {
 		        </div>
 
 		        <div className="table-responsive">
-		            <table className="table table-dark">
-		                <thead>
+		            <table className="table table-bordered">
+		                <thead className="table-dark">
 		                    <tr>
 		                      	<th scope="col">#</th>
 		                      	<th scope="col">Name</th>
 		                      	<th scope="col">Email</th>
+		                      	<th scope="col">Active</th>
 		                      	<th scope="col">Role</th>
 		                      	<th scope="col">Action</th>
 		                    </tr>
@@ -42,6 +43,7 @@ class Users extends Component {
 				                        <td>{user.id}</td>
 				                        <td>{user.first_name} {user.last_name}</td>
 				                        <td>{user.email}</td>
+				                        <td>{user.is_active ? "Active" : "InActive"}</td>
 				                        <td>{user.role.name}</td>
 				                        <td>
 				                        	<Link to={`/users/${user.id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
@@ -53,6 +55,17 @@ class Users extends Component {
 		                </tbody>
 		            </table>
 		        </div>
+
+		        <div>
+		        	<ul className="pagination">
+		        		<li className="page-item">
+		        			<a href="!#" className="page-link">Previous</a>
+		        		</li>
+		        		<li className="page-item">
+		        			<a href="!#" className="page-link">Next</a>
+		        		</li>
+		        	</ul>
+		        </div>	
 			</Wrapper>
 		)
 	}
