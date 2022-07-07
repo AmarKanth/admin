@@ -7,6 +7,7 @@ from rest_framework import status, exceptions
 
 from users.serializers import UserSerializer, PermissionSerializer, RoleSerializer
 from users.models import Role, Permission, User
+from users.pagination import CustomPagination
 
 
 class Register(APIView):
@@ -55,3 +56,4 @@ class RoleAPIViewset(ModelViewSet):
 class UsersAPIViewset(ModelViewSet):
 	queryset = User.objects.all()
 	serializer_class = UserSerializer
+	pagination_class = CustomPagination

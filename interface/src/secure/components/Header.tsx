@@ -28,12 +28,12 @@ class Header extends Component {
 
         return (
             <header className="navbar navbar-dark bg-dark shadow">
-                <a className="navbar-brand col-md-3 px-3" href="!#">Admin App</a>
+                <a className="navbar-brand col-md-3 px-3" href="/">Admin App</a>
 
                 <div className="navbar-nav col-md-2">
                     <div className="nav-item">
-                        <button type="button" className="btn btn-outline-light me-2">Login</button>
-                        <button type="button" className="btn btn-outline-light me-2" onClick={this.handleClick}>Logout</button>
+                        <a href="/login" className="btn btn-outline-light me-2">Login</a>
+                        <a href="!#" className="btn btn-outline-light me-2" onClick={this.handleClick}>Logout</a>
                     </div>
                 </div>
             </header>
