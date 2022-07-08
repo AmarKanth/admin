@@ -31,9 +31,18 @@ class Users extends Component {
 
 	prev = async(e: SyntheticEvent) => {
 		e.preventDefault();
-		if (this.page == 1) return;
+		if (this.page === 1) return;
 		this.page--;
 		await this.componentDidMount();
+	}
+
+	delete = async(id: number, e: SyntheticEvent) => {
+		e.preventDefault();
+
+		if(window.confirm("Are you sure?")){
+			await axios.delete(`users/${id}/`);
+			await this.componentDidMount();
+		}
 	}
 
 	render() {
@@ -65,8 +74,8 @@ class Users extends Component {
 				                        <td>{user.is_active ? "Active" : "InActive"}</td>
 				                        <td>{user.role.name}</td>
 				                        <td>
-				                        	<Link to={`/users/${user.id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
-				                        	<Link to={`/users/${user.id}/edit`} className="btn btn-sm btn-outline-secondary">Delete</Link>
+				                        	<a href="!#" className="btn btn-sm btn-outline-secondary">Edit</a>
+				                        	<a href="!#" className="btn btn-sm btn-outline-secondary" onClick={(e) => this.delete(user.id, e)}>Delete</a>
 				                        </td>
 				                    </tr>
 		                		)
