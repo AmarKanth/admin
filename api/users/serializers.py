@@ -31,17 +31,21 @@ class RoleRelatedField(serializers.RelatedField):
 	def to_representation(self, instane):
 		return RoleSerializer(instane).data
 
+	def to_internal_value(self, data):
+		return self.queryset.get(pk=data)
+
 
 class UserSerializer(serializers.ModelSerializer):
 	role = RoleRelatedField()
 	
 	class Meta:
 		model = User
-		fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password', 'is_active', 'role')
+		fields = ('id', 'username', 'first_name', 'last_name', 'email', 'is_active', 'role')
 		read_only_fields = ('id',)
 		extra_kwargs = {
 			'password': {'write_only': True}
 		}
 
 	def create(self, validated_data):
+		validated_data["password"] = "password"
 		return self.Meta.model.objects.create_user(**validated_data)

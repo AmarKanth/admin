@@ -22,12 +22,10 @@ header button {
     margin-right: 1px;
 }
 
-/*
- * Container
- */
-.container-fluid .row {
+
+.container-fluid {
     display: flex;
-    min-height: 100vh !important;
+    padding: 0px;
 }
 
 /*
@@ -35,12 +33,13 @@ header button {
  */
 .sidebar {
     flex: 15%;
+    min-height: 100vh !important;
     color: #fff !important;
     padding: 1rem !important;
     background-color: #343a40 !important;
 }
 
-.nav {
+.sidebar .nav {
     display: flex;
     flex-direction: column !important;
     flex-wrap: wrap;
@@ -64,4 +63,8 @@ header button {
 
 .add-button {
     padding: 10px;
+}
+
+.horizontal-form div {
+    float: left;
 }

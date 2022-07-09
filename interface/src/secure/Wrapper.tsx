@@ -10,13 +10,13 @@ class Wrapper extends Component {
 				<Header />
             
 	            <div className="container-fluid">
-	                <div className="row">
-	                    <Nav />
+	            	<div className="sidebar">
+                    	<Nav />
+                    </div>
 
-	                    <div className="main-content">
-	                        {this.props.children}
-	                    </div>
-	                </div>
+                    <div className="main-content">
+                        {this.props.children}
+                    </div>
 	            </div>	
 			</>
 		)

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import Wrapper from '../Wrapper.tsx';
-import {User} from '../classes/user';
 
 
 class Users extends Component {
@@ -65,7 +64,7 @@ class Users extends Component {
 		                    </tr>
 		                </thead>
 		                <tbody>
-		                	{this.state.users.map((user: User) => {
+		                	{this.state.users.map((user) => {
 		                		return(
 		                			<tr key={user.id}>
 				                        <td>{user.id}</td>
