@@ -9,6 +9,7 @@ const Users = () => {
 	const [currentPage, setCurrentPage] = useState(1);
 	const [lastPage, setLastPage] = useState(1);
 	const [totalCount, setTotalCount] = useState(0);
+	const [roles, setRoles] = useState([]);
 
 	useEffect(() => {
 		
@@ -21,6 +22,21 @@ const Users = () => {
 		fetchUsers();
 
 	}, [currentPage, totalCount]);
+
+	useEffect(() => {
+		
+		const fetchRoles = async () => {
+			const response = await axios.get("roles/");
+			setRoles(response.data);
+		}
+		fetchRoles();
+
+	}, []);
+
+	const findRole = (id) => {
+		var role = roles.find(role => role.id === id)
+		return (role !== undefined) ?  role.name : null
+	}
 
 	const next = async (e: SyntheticEvent) => {
 		e.preventDefault();
@@ -68,7 +84,7 @@ const Users = () => {
 			                        <td>{user.first_name} {user.last_name}</td>
 			                        <td>{user.email}</td>
 			                        <td>{user.is_active ? "Active" : "InActive"}</td>
-			                        <td>{user.role ? user.role.name : null}</td>
+			                        <td>{findRole(user.role)}</td>
 			                        <td>
 			                        	<a href={`/users/${user.id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</a>
 			                        	<a href="!#" className="btn btn-sm btn-outline-secondary" onClick={(e) => del(user.id, e)}>Delete</a>

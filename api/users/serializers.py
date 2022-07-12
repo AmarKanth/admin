@@ -39,7 +39,6 @@ class RoleRelatedField(serializers.RelatedField):
 
 
 class UserSerializer(serializers.ModelSerializer):
-	role = RoleRelatedField()
 	
 	class Meta:
 		model = User
