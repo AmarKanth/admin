@@ -10,20 +10,6 @@ from users.models import Role, Permission, User
 from users.pagination import CustomPagination
 
 
-class Register(APIView):
-
-	def post(self, request):
-		data = request.data
-
-		if data['password'] != data['password_confirm']:
-			raise exceptions.APIException('Passwords do not match!')
-
-		serializer = UserSerializer(data=data)
-		serializer.is_valid(raise_exception=True)
-		serializer.save()
-		return Response(serializer.data)
-
-
 class Logout(APIView):
 
 	def get(self, request):

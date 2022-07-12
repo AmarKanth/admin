@@ -1,101 +1,97 @@
-import React, {Component} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link} from "react-router-dom";
 import axios from 'axios';
 import Wrapper from '../Wrapper.tsx';
 
 
-class Users extends Component {
-	state = {
-		users: []
-	}
-	page = 1;
-	last_page = 0;
+const Users = () => {
+	const [users, setUsers] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [lastPage, setLastPage] = useState(1);
+	const [totalCount, setTotalCount] = useState(0);
 
-	componentDidMount = async () => {
-		const response = await axios.get(`users?page=${this.page}`);
+	useEffect(() => {
 		
-		this.setState({
-			users: response.data.data
-		});
+		const fetchUsers = async () => {
+			const response = await axios.get(`users?page=${currentPage}`);
+			setUsers(response.data.data);
+			setLastPage(response.data.meta.last_page);
+			setTotalCount(response.data.meta.total_count);
+		}
+		fetchUsers();
 
-		this.last_page = response.data.meta.last_page
+	}, [currentPage, totalCount]);
+
+	const next = async (e: SyntheticEvent) => {
+		e.preventDefault();
+		if (currentPage === lastPage) return;
+		setCurrentPage(currentPage+1);
 	}
 
-	next = async (e: SyntheticEvent) => {
+	const prev = async(e: SyntheticEvent) => {
 		e.preventDefault();
-		if (this.page === this.last_page) return;
-		this.page++;
-		await this.componentDidMount();
+		if (currentPage === 1) return;
+		setCurrentPage(currentPage-1);
 	}
 
-	prev = async(e: SyntheticEvent) => {
+	const del = async(id: number, e: SyntheticEvent) => {
 		e.preventDefault();
-		if (this.page === 1) return;
-		this.page--;
-		await this.componentDidMount();
-	}
-
-	delete = async(id: number, e: SyntheticEvent) => {
-		e.preventDefault();
-
 		if(window.confirm("Are you sure?")){
 			await axios.delete(`users/${id}/`);
-			await this.componentDidMount();
 		}
+		setTotalCount(totalCount-1);
 	}
 
-	render() {
-		return(
-			<Wrapper>
-				<div className="add-button">
-               		<Link to={'/users/create'} className="btn btn-sm btn-outline-secondary">Add</Link>
-		        </div>
+	return(
+		<Wrapper>
+			<div className="add-button">
+           		<Link to={'/users/create'} className="btn btn-sm btn-outline-secondary">Add</Link>
+	        </div>
 
-		        <div className="table-responsive">
-		            <table className="table table-bordered">
-		                <thead className="table-dark">
-		                    <tr>
-		                      	<th scope="col">#</th>
-		                      	<th scope="col">Name</th>
-		                      	<th scope="col">Email</th>
-		                      	<th scope="col">Active</th>
-		                      	<th scope="col">Role</th>
-		                      	<th scope="col">Action</th>
-		                    </tr>
-		                </thead>
-		                <tbody>
-		                	{this.state.users.map((user) => {
-		                		return(
-		                			<tr key={user.id}>
-				                        <td>{user.id}</td>
-				                        <td>{user.first_name} {user.last_name}</td>
-				                        <td>{user.email}</td>
-				                        <td>{user.is_active ? "Active" : "InActive"}</td>
-				                        <td>{user.role.name}</td>
-				                        <td>
-				                        	<a href="!#" className="btn btn-sm btn-outline-secondary">Edit</a>
-				                        	<a href="!#" className="btn btn-sm btn-outline-secondary" onClick={(e) => this.delete(user.id, e)}>Delete</a>
-				                        </td>
-				                    </tr>
-		                		)
-		                	})}
-		                </tbody>
-		            </table>
-		        </div>
+	        <div className="table-responsive">
+	            <table className="table table-bordered">
+	                <thead className="table-dark">
+	                    <tr>
+	                      	<th scope="col">#</th>
+	                      	<th scope="col">Name</th>
+	                      	<th scope="col">Email</th>
+	                      	<th scope="col">Active</th>
+	                      	<th scope="col">Role</th>
+	                      	<th scope="col">Action</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                	{users.map((user) => {
+	                		return(
+	                			<tr key={user.id}>
+			                        <td>{user.id}</td>
+			                        <td>{user.first_name} {user.last_name}</td>
+			                        <td>{user.email}</td>
+			                        <td>{user.is_active ? "Active" : "InActive"}</td>
+			                        <td>{user.role ? user.role.name : null}</td>
+			                        <td>
+			                        	<a href={`/users/${user.id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</a>
+			                        	<a href="!#" className="btn btn-sm btn-outline-secondary" onClick={(e) => del(user.id, e)}>Delete</a>
+			                        </td>
+			                    </tr>
+	                		)
+	                	})}
+	                </tbody>
+	            </table>
+	        </div>
 
-		        <div>
-		        	<ul className="pagination">
-		        		<li className="page-item">
-		        			<a href="!#" className="page-link" onClick={this.prev}>Previous</a>
-		        		</li>
-		        		<li className="page-item">
-		        			<a href="!#" className="page-link" onClick={this.next}>Next</a>
-		        		</li>
-		        	</ul>
-		        </div>	
-			</Wrapper>
-		)
-	}
+	        <div>
+	        	<ul className="pagination">
+	        		<li className="page-item">
+	        			<a href="!#" className="page-link" onClick={prev}>Previous</a>
+	        		</li>
+	        		<li className="page-item">
+	        			<a href="!#" className="page-link" onClick={next}>Next</a>
+	        		</li>
+	        	</ul>
+	        </div>	
+		</Wrapper>
+	)
 }
 
 export default Users;

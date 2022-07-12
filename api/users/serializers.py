@@ -32,7 +32,10 @@ class RoleRelatedField(serializers.RelatedField):
 		return RoleSerializer(instane).data
 
 	def to_internal_value(self, data):
-		return self.queryset.get(pk=data)
+		try:
+			return self.queryset.get(pk=data)
+		except Role.DoesNotExist:
+			raise serializers.ValidationError("This field may not be blank.")
 
 
 class UserSerializer(serializers.ModelSerializer):

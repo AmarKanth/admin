@@ -18,7 +18,7 @@ header .nav-link {
     display: inline-block;
 }
 
-header button {
+header .nav-item a{
     margin-right: 1px;
 }
 

@@ -1,12 +1,9 @@
 import axios from "axios";
 
 
-axios.defaults.baseURL = "http://localhost:8000/api/"
-
-
 axios.interceptors.request.use(config => {
-	let access_token = localStorage.getItem('access');
-	config.headers.Authorization = `Bearer ${access_token}`;
+	config.headers.Authorization = `Bearer ${localStorage.access}`;
+	config.baseURL = "http://localhost:8000/api/"
 	return config;
 }, error => error);
 
@@ -15,15 +12,16 @@ axios.interceptors.response.use(res => res, async error => {
 	
 	if (error.response.status === 401) {
 		
-		await axios.post("token/refresh/", {
-			"refresh": localStorage.getItem("refresh")
-		}).then(res => {
+		await axios.post("token/refresh/", {"refresh": localStorage.refresh}).then(res => {
 			localStorage.setItem('access', res.data.access);
 			axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access}`;
+		}).catch(error => {
+			localStorage.removeItem('refresh');
+			localStorage.removeItem('access');
 		});
 
 		return axios(error.config);
 	}
 
-	return error;
+	return Promise.reject(error);
 });
