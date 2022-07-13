@@ -10,15 +10,16 @@ axios.interceptors.request.use(config => {
 
 axios.interceptors.response.use(res => res, async error => {
 	
-	if (error.response.status === 401) {
+	if (error.response.status === 401 && localStorage.access) {
 		
-		await axios.post("token/refresh/", {"refresh": localStorage.refresh}).then(res => {
-			localStorage.setItem('access', res.data.access);
-			axios.defaults.headers.common['Authorization'] = `Bearer ${res.data.access}`;
-		}).catch(error => {
+		try {
+			const response = await axios.post("token/refresh/", {"refresh": localStorage.refresh});
+			localStorage.setItem('access', response.data.access);
+			axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
+		} catch(error) {
 			localStorage.removeItem('refresh');
 			localStorage.removeItem('access');
-		});
+		}
 
 		return axios(error.config);
 	}

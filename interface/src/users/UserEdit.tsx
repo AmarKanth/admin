@@ -91,6 +91,9 @@ const UserEdit = () => {
 				    </div>
 				</form>
 			</div>
+			<div>
+				
+			</div>
 		</Wrapper>
 	)
 }

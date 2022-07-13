@@ -1,16 +1,15 @@
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
+import {useAuth} from '../hooks/useAuth';
 
 
 const Header = () => {
+    const auth = useAuth()
     const navigate = useNavigate()
 
-    const handle = async (e: SyntheticEvent) => {
+    const handle = (e: SyntheticEvent) => {
         e.preventDefault();
-        
-        await axios.get('logout/').then(res => {
-            localStorage.removeItem('refresh');
-            localStorage.removeItem('access');
+        auth.logOut(() => {
             navigate("/login");
         });
     }
