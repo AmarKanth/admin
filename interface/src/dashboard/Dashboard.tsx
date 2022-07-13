@@ -1,4 +1,4 @@
-import Wrapper from "../Wrapper.tsx";
+import Wrapper from "../layout/Wrapper.tsx";
 
 
 const Dashboard = () => (

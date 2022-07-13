@@ -1,13 +1,13 @@
 import './App.css';
 
-import RedirectToDashboard from "./secure/RedirectToDashboard.tsx";
-import Dashboard from './secure/dashboard/Dashboard.tsx';
+import RedirectToDashboard from "./utils/RedirectToDashboard.tsx";
+import Dashboard from './dashboard/Dashboard.tsx';
 
-import Login from './public/Login.tsx';
+import Login from './auth/Login.tsx';
 
-import Users from './secure/users/Users.tsx';
-import UserCreate from './secure/users/UserCreate.tsx';
-import UserEdit from './secure/users/UserEdit.tsx';
+import Users from './users/Users.tsx';
+import UserCreate from './users/UserCreate.tsx';
+import UserEdit from './users/UserEdit.tsx';
 
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 
