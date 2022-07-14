@@ -1,7 +1,5 @@
 import './App.css';
 
-import AuthProvider from "./context/AuthProvider";
-
 import RedirectToDashboard from "./utils/RedirectToDashboard.tsx";
 import Dashboard from './dashboard/Dashboard.tsx';
 
@@ -12,25 +10,24 @@ import UserCreate from './users/UserCreate.tsx';
 import UserEdit from './users/UserEdit.tsx';
 
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import {ProtectedRoute} from "./routes/ProtectedRoute.js";
+import {PublicRoute} from "./routes/PublicRoute.js";
 
 
 function App() {
-
     return (
-        <AuthProvider>
-            <div className="App">
-                <BrowserRouter>
-                    <Routes>
-                        <Route path={'/'} element={<RedirectToDashboard/>} />
-                        <Route path={'/dashboard'} element={<Dashboard/>} />
-                        <Route path={'/login'} element={<Login/>} />
-                        <Route path={'/users'} element={<Users/>} />
-                        <Route path={'/users/create'} element={<UserCreate/>} />
-                        <Route path={'/users/:id/edit'} element={<UserEdit/>} />
-                    </Routes>
-                </BrowserRouter>
-            </div>
-        </AuthProvider>
+        <div className="App">
+            <BrowserRouter>
+                <Routes>
+                    <Route path={'/login'} element={<PublicRoute><Login/></PublicRoute>} />
+                    <Route path={'/'} element={<ProtectedRoute><RedirectToDashboard/></ProtectedRoute>} />
+                    <Route path={'/dashboard'} element={<ProtectedRoute><Dashboard/></ProtectedRoute>} />
+                    <Route path={'/users'} element={<ProtectedRoute><Users/></ProtectedRoute>} />
+                    <Route path={'/users/create'} element={<ProtectedRoute><UserCreate/></ProtectedRoute>} />
+                    <Route path={'/users/:id/edit'} element={<ProtectedRoute><UserEdit/></ProtectedRoute>} />
+                </Routes>
+            </BrowserRouter>
+        </div>
     );
 }
 

@@ -15,10 +15,12 @@ axios.interceptors.response.use(res => res, async error => {
 		try {
 			const response = await axios.post("token/refresh/", {"refresh": localStorage.refresh});
 			localStorage.setItem('access', response.data.access);
+			localStorage.setItem('isAuthenticated', true);
 			axios.defaults.headers.common['Authorization'] = `Bearer ${response.data.access}`;
 		} catch(error) {
 			localStorage.removeItem('refresh');
 			localStorage.removeItem('access');
+			localStorage.removeItem('isAuthenticated');
 		}
 
 		return axios(error.config);

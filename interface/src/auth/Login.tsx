@@ -1,13 +1,11 @@
 import './Login.css';
 
-import {useState, useContext} from 'react';
+import {useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
-import {useAuth} from '../hooks/useAuth';
 
 
 const Login = () => {
-	const auth = useAuth();
 	const navigate = useNavigate();
 
 	const [data, setData] = useState({
@@ -21,11 +19,19 @@ const Login = () => {
 		setData(newData)
 	}
 
-	const submit = (e: SyntheticEvent) => {
+	const submit = async (e: SyntheticEvent) => {
 		e.preventDefault();
-		auth.logIn(data, () => {
-			navigate("/users");	
-		});
+
+		await axios.post('token/create/', data).then(res => {
+			localStorage.setItem('refresh', res.data.refresh);
+			localStorage.setItem('access', res.data.access);
+			localStorage.setItem('isAuthenticated', true)
+			navigate("/users");
+		}).catch(error => {
+			localStorage.removeItem('refresh');
+			localStorage.removeItem('access');
+			localStorage.removeItem('isAuthenticated');
+		})
 	}
 
 	return (
