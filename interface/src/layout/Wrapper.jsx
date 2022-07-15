@@ -1,5 +1,5 @@
-import Header from './Header.tsx';
-import Nav from './Nav.tsx';
+import Header from './Header';
+import Nav from './Nav';
 
 
 const Wrapper = (props) => {
