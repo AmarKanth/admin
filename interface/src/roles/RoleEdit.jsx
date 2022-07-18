@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import {useParams, useNavigate} from 'react-router-dom';
 import axios from 'axios';
 import Wrapper from '../layout/Wrapper';
@@ -13,13 +13,13 @@ const RoleEdit = () => {
 		name: '',
 		permissions: []
 	});
-	const [selected, setSelected] = useState(new Set());
+	let selected = new Set();
 
 	useEffect(() => {
 		const fetchRole = async () => {
 			await axios.get(`roles/${id}/`).then(res => {
+				selected = new Set(res.data.permissions);
 				setData(res.data);
-				setSelected(new Set(res.data.permissions))
 			})
 		}
 
@@ -66,7 +66,7 @@ const RoleEdit = () => {
 				    		return(
 				    			<div key={permission.id} className="form-check">
 				    				<label>
-				    					<input className="form-check-input" type="checkbox" value={permission.id} defaultChecked={data.permissions.includes(permission.id)} onChange={e => check(e)} />
+				    					<input className="form-check-input" id={permission.id} type="checkbox" value={permission.id} defaultChecked={data.permissions.includes(permission.id)} onChange={e => check(e)} />
 				    					{permission.name.replaceAll('_',' ')}
 				    				</label>
 				    			</div>
