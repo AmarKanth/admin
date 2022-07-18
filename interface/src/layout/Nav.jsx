@@ -6,10 +6,13 @@ const Nav = () => {
         <>
             <ul className="nav nav-pills">
                 <li className="nav-item">
-                    <NavLink to={"/dashboard"} className={({isActive}) => (isActive ? "nav-link active" : 'nav-link')} aria-current="page">Dashboard</NavLink>
+                    <NavLink to={"/dashboard"} className={({isActive}) => (isActive ? "nav-link active" : "nav-link")} aria-current="page">Dashboard</NavLink>
                 </li>
                 <li>
-                    <NavLink to={"/users"} className={({isActive}) => (isActive ? "nav-link active" : 'nav-link')} aria-current="page">Users</NavLink>
+                    <NavLink to={"/users"} className={({isActive}) => (isActive ? "nav-link active" : "nav-link")} aria-current="page">Users</NavLink>
+                </li>
+                <li>
+                    <NavLink to={"/roles"} className={({isActive}) => (isActive ? "nav-link active" : "nav-link")} aria-current="page">Roles</NavLink>
                 </li>
             </ul>
         </>

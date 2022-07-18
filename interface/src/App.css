@@ -68,3 +68,12 @@ header .nav-item a{
 .horizontal-form div {
     float: left;
 }
+
+.form-label {
+    width: 100%;
+    font-weight: 600;
+}
+
+.form-check {
+    padding: 0 1.25rem;
+}

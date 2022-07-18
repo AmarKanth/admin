@@ -9,33 +9,12 @@ class PermissionSerializer(serializers.ModelSerializer):
 		fields = "__all__"
 
 
-class PermissionRelatedField(serializers.StringRelatedField):
-    def to_representation(self, value):
-        return PermissionSerializer(value).data
-
-    def to_internal_value(self, data):
-        return data
-
-
 class RoleSerializer(serializers.ModelSerializer):
-	permissions = PermissionRelatedField(many=True)
 
 	class Meta:
 		model = Role
 		fields = "__all__"
-
-
-class RoleRelatedField(serializers.RelatedField):
-	queryset = Role.objects.all()
-
-	def to_representation(self, instane):
-		return RoleSerializer(instane).data
-
-	def to_internal_value(self, data):
-		try:
-			return self.queryset.get(pk=data)
-		except Role.DoesNotExist:
-			raise serializers.ValidationError("This field may not be blank.")
+		read_only_fields = ('id',)
 
 
 class UserSerializer(serializers.ModelSerializer):
