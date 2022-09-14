@@ -14,6 +14,9 @@ const Nav = () => {
                 <li>
                     <NavLink to={"/roles"} className={({isActive}) => (isActive ? "nav-link active" : "nav-link")} aria-current="page">Roles</NavLink>
                 </li>
+                <li>
+                    <NavLink to={"/products"} className={({isActive}) => (isActive ? "nav-link active" : "nav-link")} aria-current="page">Products</NavLink>
+                </li>
             </ul>
         </>
     )

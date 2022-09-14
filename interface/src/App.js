@@ -13,6 +13,8 @@ import Roles from './roles/Roles';
 import RoleCreate from './roles/RoleCreate';
 import RoleEdit from './roles/RoleEdit';
 
+import Products from './products/Products';
+
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import {ProtectedRoute} from "./routes/ProtectedRoute";
 import {PublicRoute} from "./routes/PublicRoute";
@@ -32,6 +34,7 @@ function App() {
                     <Route path={'/roles'} element={<ProtectedRoute><Roles/></ProtectedRoute>} />
                     <Route path={'/roles/create'} element={<ProtectedRoute><RoleCreate/></ProtectedRoute>} />
                     <Route path={'/roles/:id/edit'} element={<ProtectedRoute><RoleEdit/></ProtectedRoute>} />
+                    <Route path={'/products' element={<ProtectedRoute><Products/></ProtectedRoute>} />
                 </Routes>
             </BrowserRouter>
         </div>
