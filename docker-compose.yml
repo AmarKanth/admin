@@ -26,16 +26,5 @@ services:
             - POSTGRES_PASSWORD=postgres
         depends_on:
             - db
-    interface:
-        build:
-            context: ./interface
-        command: >
-            sh -c "npm start"
-        volumes:
-            - ./interface:/app
-            - node-modules:/app/node_modules
-        ports:
-            - "3000:3000"
 volumes:
     dev-db-data:
-    node-modules:
