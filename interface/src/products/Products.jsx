@@ -4,6 +4,8 @@ const Products = () => {
 	return(
 		<Wrapper>
 			<div>Products</div>
-		<Wrapper>
+		</Wrapper>
 	)
 }
+
+export default Products;

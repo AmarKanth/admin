@@ -34,7 +34,7 @@ function App() {
                     <Route path={'/roles'} element={<ProtectedRoute><Roles/></ProtectedRoute>} />
                     <Route path={'/roles/create'} element={<ProtectedRoute><RoleCreate/></ProtectedRoute>} />
                     <Route path={'/roles/:id/edit'} element={<ProtectedRoute><RoleEdit/></ProtectedRoute>} />
-                    <Route path={'/products' element={<ProtectedRoute><Products/></ProtectedRoute>} />
+                    <Route path={'/products'} element={<ProtectedRoute><Products/></ProtectedRoute>} />
                 </Routes>
             </BrowserRouter>
         </div>
