@@ -1,0 +1,11 @@
+[
+	{
+		"model": "products.product",
+		"pk": 1,
+		"fields": {
+			"title": "sdfl sdfs",
+			"description": "dsjfl sdfjas aslfja",
+			"price": 187.90
+		}
+	}
+]
