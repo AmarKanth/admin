@@ -7,7 +7,7 @@ from rest_framework import status, exceptions
 
 from users.serializers import UserSerializer, PermissionSerializer, RoleSerializer
 from users.models import Role, Permission, User
-from users.pagination import CustomPagination
+from core.pagination import CustomPagination
 
 
 class Logout(APIView):

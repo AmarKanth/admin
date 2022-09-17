@@ -3,9 +3,72 @@
 		"model": "products.product",
 		"pk": 1,
 		"fields": {
-			"title": "sdfl sdfs",
-			"description": "dsjfl sdfjas aslfja",
-			"price": 187.90
+			"title": "Laptop Bag",
+			"description": "Wildcraft 44 cms Polyester Black Laptop Bag",
+			"price": 1690.00
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 2,
+		"fields": {
+			"title": "Tobacco",
+			"description": "White Leaf Tobacco & Nicotine Free Smoking Mixture With 100% Natural Herbal Smoking Blend 1 Pack (1 oz/ 30g) With Wooden Pipe",
+			"price": 500.00
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 3,
+		"fields": {
+			"title": "Mobile Charger",
+			"description": "Apple 20W USB-C Power Adapter (for iPhone, iPad & AirPods)",
+			"price": 17900.89
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 4,
+		"fields": {
+			"title": "Laptop",
+			"description": "Dell Inspiron 3525 Laptop, AMD Athlon Silver 3050U, Win 11 + MSO'21, 8GB GDDR4, 256Gb SSD, Radeon Graphics, 15.6",
+			"price": 315000.00
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 5,
+		"fields": {
+			"title": "Book",
+			"description": "Beyond Possible: '14 Peaks: Nothing is Impossible' Now On Netflix",
+			"price": 249.00
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 6,
+		"fields": {
+			"title": "Mosquito Killer Bat",
+			"description": "HIT Anti Mosquito Racquet Rechargeable Insect Killer Bat with LED Light, Black",
+			"price": 249.00
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 7,
+		"fields": {
+			"title": "Water Bottle",
+			"description": "Uva World Plastic Water Dispenser Bottle, 20L, Set of 1, Blue",
+			"price": 330.00
+		}
+	},
+	{
+		"model": "products.product",
+		"pk": 8,
+		"fields": {
+			"title": "Water Bottle",
+			"description": "Amazon Brand - Solimo Accord Chair (Fabric ,black,1 Piece)",
+			"price": 4138.71
 		}
 	}
 ]
