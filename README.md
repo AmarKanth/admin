@@ -6,3 +6,4 @@
 1. upgrade node to 18
 1. add unittest checkpoints in git build process
 1. create common pagination component.
+1. fix decimal number display in products froms.
