@@ -5,3 +5,4 @@
 1. use centos as base for all the services
 1. upgrade node to 18
 1. add unittest checkpoints to git build process
+1. create common pagination component.
