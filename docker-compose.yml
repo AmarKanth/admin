@@ -27,13 +27,10 @@ services:
         depends_on:
             - db
     interface:
-        stdin_open: true
         build:
             context: ./interface
         command: >
             sh -c "npm start"
-        environment:
-            - CHOKIDAR_USEPOLLING=true
         volumes:
             - ./interface:/app
             - node-modules:/app/node_modules
