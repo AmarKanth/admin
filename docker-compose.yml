@@ -7,6 +7,7 @@ services:
         entrypoint: ["sudo", "sh", "/app/entrypoint.sh"]
         volumes:
             - ./interface:/app
+            - node-modules:/app/node_modules
         ports:
             - "3000:3000"
         networks:
@@ -50,6 +51,7 @@ services:
 
 volumes:
     dev-db-data:
+    node-modules:
 
 networks:
     app-network:
