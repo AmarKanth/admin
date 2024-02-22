@@ -1,19 +1,19 @@
 version: "3.3"
    
 services:
-    # interface:
-    #     build:
-    #         context: ./interface
-    #     entrypoint: ["sudo", "sh", "/app/entrypoint.sh"]
-    #     volumes:
-    #         - ./interface:/app
-    #         - node-modules:/app/node_modules
-    #     ports:
-    #         - "3000:3000"
-    #     networks:
-    #         - app-network
-    #     depends_on:
-    #         - api
+    interface:
+        build:
+            context: ./interface
+        entrypoint: ["sudo", "sh", "/app/entrypoint.sh"]
+        volumes:
+            - ./interface:/app
+            - node-modules:/app/node_modules
+        ports:
+            - "3000:3000"
+        networks:
+            - app-network
+        depends_on:
+            - api
 
     api:
         build: 
@@ -51,7 +51,7 @@ services:
 
 volumes:
     dev-db-data:
-    # node-modules:
+    node-modules:
 
 networks:
     app-network:
